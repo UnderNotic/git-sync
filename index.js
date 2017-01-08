@@ -12,7 +12,7 @@ koa.use(async (ctx, next) => {
         let start = new Date();
         await next();
         let ms = new Date() - start;
-        console.log(`${ctx.method} ${ctx.url} took ${ms}ms`);
+        console.log(`${ctx.method} ${ctx.url} from ${ctx.host} took ${ms}ms`);
     } catch (err) {
         console.error('Error', err);
         ctx.status = err.status || 500;
@@ -20,7 +20,6 @@ koa.use(async (ctx, next) => {
         ctx.app.emit('error', err);
     }
 });
-
 
 router.get('/', async ctx => {
     ctx.body = Object.assign(
@@ -37,7 +36,6 @@ router.post('/payload', async ctx => {
     await execAsync('git -C ~/projects/wackcoon-device pull -f');
     await execAsync('npm -C ~/projects/wackcoon-device install --production');
 });
-
 
 koa.use(router.routes());
 koa.use(router.allowedMethods());
