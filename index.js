@@ -9,9 +9,9 @@ const port = process.argv[3] || 5000;
 
 koa.use(async (ctx, next) => {
     try {
-        let start = new Date();
+        const start = new Date();
         await next();
-        let ms = new Date() - start;
+        const ms = new Date() - start;
         console.log(`${ctx.method} ${ctx.url} from ${ctx.host} took ${ms}ms`);
     } catch (err) {
         console.error('Error', err);
