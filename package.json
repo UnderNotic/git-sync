@@ -28,7 +28,8 @@
     "koa": "^2.0.0-alpha.7",
     "koa-router": "^7.1.0",
     "koa-bodyparser": "^2.3.0",
-    "bluebird": "^3.4.7"
+    "bluebird": "^3.4.7",
+    "buffer-equal-constant-time": "^1.0.1"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"
