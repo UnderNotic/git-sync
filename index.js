@@ -8,7 +8,7 @@ const constTimeEqual = require("buffer-equal-constant-time");
 
 const secretTokenPromise = readFileAsync("./secret.txt", "utf8").catch(err => {
     console.error("There is no secret.txt file with secret from github webhook");
-    proces.exit(1);
+    process.exit(1);
 });
 const allowedRepos = process.argv[2] ? process.argv[2].split(";") : ["test-repo"];
 const port = process.argv[3] || 5000;
@@ -36,6 +36,8 @@ router.get('/', async ctx => {
 });
 
 router.post('/payload', async ctx => {
+    console.log("ctx body", ctx.body);
+    console.log("ctx request body", ctx.request.body);
     let repo = ctx.request.body.repository.name;
     console.log(`${ctx.request.body.pusher.name} (${ctx.request.body.pusher.email} just pushed to ${repo}`);
 
