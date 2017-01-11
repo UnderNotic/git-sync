@@ -38,12 +38,12 @@ router.get('/', async ctx => {
 
 router.post('/payload', async ctx => {
     let repo = ctx.request.body.repository.name;
-    console.log(`${ctx.request.body.sender.name} just pushed to ${repo}`);
+    console.log(`${ctx.request.body.sender.login} just pushed to ${repo}`);
 
     if (allowedRepos.indexOf(repo) === -1 && await verifySignature(ctx.request)) {
         console.error(`${repo} is not allowed`);
     } else {
-        await execAsync($`git -C ~/projects/${repo} reset --hard`);
+        await execAsync(`git -C ~/projects/${repo} reset --hard`);
         await execAsync(`git -C ~/projects/${repo} clean -df`);
         await execAsync(`git -C ~/projects/${repo} pull -f`);
         await execAsync(`npm -C ~/projects/${repo} install --production`);
