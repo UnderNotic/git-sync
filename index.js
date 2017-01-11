@@ -48,6 +48,7 @@ router.post('/payload', async ctx => {
         await execAsync(`git -C ~/projects/${repo} pull -f`);
         await execAsync(`npm -C ~/projects/${repo} install --production`);
     }
+    ctx.status = 200;
 });
 
 koa.use(bodyParser());
