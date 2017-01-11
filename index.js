@@ -1,6 +1,7 @@
 require("./logging.js");
 const koa = new (require('koa'));
 const router = new (require('koa-router'));
+const bodyParser = require('koa-bodyparser');
 const exec = (require('bluebird')).promisify(require('child_process').exec);
 const readFileAsync = (require('bluebird')).promisify(require("fs").readFile);
 const crypto = require("crypto");
@@ -36,8 +37,6 @@ router.get('/', async ctx => {
 });
 
 router.post('/payload', async ctx => {
-    console.log("ctx body", ctx.body);
-    console.log("ctx request body", ctx.request.body);
     let repo = ctx.request.body.repository.name;
     console.log(`${ctx.request.body.pusher.name} (${ctx.request.body.pusher.email} just pushed to ${repo}`);
 
@@ -51,6 +50,7 @@ router.post('/payload', async ctx => {
     }
 });
 
+koa.use(bodyParser());
 koa.use(router.routes());
 koa.use(router.allowedMethods());
 
