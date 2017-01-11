@@ -38,7 +38,7 @@ router.get('/', async ctx => {
 
 router.post('/payload', async ctx => {
     let repo = ctx.request.body.repository.name;
-    console.log(`${ctx.request.body.pusher.name} (${ctx.request.body.pusher.email} just pushed to ${repo}`);
+    console.log(`${ctx.request.body.sender.name} just pushed to ${repo}`);
 
     if (allowedRepos.indexOf(repo) === -1 && await verifySignature(ctx.request)) {
         console.error(`${repo} is not allowed`);
