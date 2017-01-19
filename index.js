@@ -29,11 +29,11 @@ koa.use(async (ctx, next) => {
 });
 
 router.get('/', async ctx => {
-    ctx.body = Object.assign(
+    let body = Object.assign(
         JSON.parse(await readFileAsync("./package.json", "utf8")),
         { watchedRepositories: allowedRepos }
     );
-    ctx.body = JSON.stringify(ctx.body, null, 4);
+    ctx.body = JSON.stringify(body, null, 4);
 });
 
 router.post('/payload', async ctx => {
