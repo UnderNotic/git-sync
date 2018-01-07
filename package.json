@@ -2,10 +2,15 @@
   "name": "auto-deploy-raspberrypi",
   "version": "0.0.1",
   "description": "Web server listening for github hook to get newest sources",
-  "main": "index.js --harmony-async-await",
+  "main": "index.js",
+  "engines": {
+    "node": ">=8.0"
+  },
+  "engineStrict": true,
   "scripts": {
-    "start": "nodemon --harmony-async-await index.js",
-    "debug": "nodemon --inspect --harmony-async-await index.js"
+    "start": "node index.js",
+    "watch": "nodemon index.js",
+    "debug": "nodemon --inspect index.js"
   },
   "repository": {
     "type": "git",
@@ -25,13 +30,13 @@
   },
   "homepage": "https://github.com/UnderNotic/auto-deploy-raspberrypi#readme",
   "dependencies": {
-    "koa": "^2.0.0-alpha.7",
-    "koa-router": "^7.1.0",
-    "koa-bodyparser": "^3.2.0",
-    "bluebird": "^3.4.7",
+    "koa": "^2.4.1",
+    "koa-router": "^7.3.0",
+    "koa-bodyparser": "^4.2.0",
+    "bluebird": "^3.5.1",
     "buffer-equal-constant-time": "^1.0.1"
   },
   "devDependencies": {
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.14.8"
   }
 }
