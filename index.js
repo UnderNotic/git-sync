@@ -11,9 +11,9 @@ const secretTokenPromise = readFileAsync("./secret.txt", "utf8").catch(err => {
     console.error("There is no secret.txt file with secret from github webhook");
     process.exit(1);
 });
-const port = process.argv[3] || 5000;
-const allowedRepos = process.argv[2] ? process.argv[2].split(";") : ["test-repo"];
-const reposDirectory = process.argv[3] ? process.argv[3] : "~/projects/";
+const port = process.argv[2] || 5000;
+const allowedRepos = process.argv[3] ? process.argv[2].split(";") : ["test-repo"];
+const reposDirectory = process.argv[4] ? process.argv[3] : "~/projects/";
 
 koa.use(async (ctx, next) => {
     try {
