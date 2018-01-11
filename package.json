@@ -1,5 +1,5 @@
 {
-  "name": "auto-deploy-raspberrypi",
+  "name": "git-sync",
   "version": "0.0.1",
   "description": "Web server listening for github hook to get newest sources",
   "main": "index.js",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/UnderNotic/auto-deploy-raspberrypi.git"
+    "url": "git+https://github.com/UnderNotic/git-sync.git"
   },
   "keywords": [
     "deploy",
@@ -26,9 +26,9 @@
   "author": "undernotic",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/UnderNotic/auto-deploy-raspberrypi/issues"
+    "url": "https://github.com/UnderNotic/git-sync/issues"
   },
-  "homepage": "https://github.com/UnderNotic/auto-deploy-raspberrypi#readme",
+  "homepage": "https://github.com/UnderNotic/git-sync#readme",
   "dependencies": {
     "koa": "^2.4.1",
     "koa-router": "^7.3.0",
