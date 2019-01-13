@@ -6,14 +6,20 @@ const exec = (require('bluebird')).promisify(require('child_process').exec);
 const readFileAsync = (require('bluebird')).promisify(require("fs").readFile);
 const crypto = require("crypto");
 const constTimeEqual = require("buffer-equal-constant-time");
+const parseArgs = require('minimist')
 
 const secretTokenPromise = readFileAsync("./secret.txt", "utf8").catch(err => {
     console.error("There is no secret.txt file with secret from github webhook");
     process.exit(1);
 });
-const port = process.argv[2] || 5000;
-const allowedRepos = process.argv[3] ? process.argv[2].split(";") : ["test-repo"];
-const reposDirectory = process.argv[4] ? process.argv[3] : "~/projects/";
+const args = parseArgs(process.argv.slice(2));
+const port = args["p"] || 5000;
+const allowedRepos = (args["r"] || []).split(",").map(r => r.trim());
+if(allowedRepos.length == 0){
+    console.error("Provide list of repos to watch");
+    process.exit(1);
+}
+const reposDirectory = args["w"] || "~/projects/";
 
 koa.use(async (ctx, next) => {
     try {
@@ -57,7 +63,7 @@ koa.use(router.routes());
 koa.use(router.allowedMethods());
 
 koa.listen(port, () => {
-    console.log(`Koa is listening on http://localhost:${port} for pushes to ${allowedRepos.join(", ")} repositories`);
+    console.log(`Koa is listening on http://localhost:${port} for pushes to ${allowedRepos.join(", ")} repositories in ${reposDirectory} workspace`);
 });
 
 async function execAsync(cmd) {

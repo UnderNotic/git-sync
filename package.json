@@ -30,13 +30,14 @@
   },
   "homepage": "https://github.com/UnderNotic/git-sync#readme",
   "dependencies": {
-    "koa": "^2.4.1",
-    "koa-router": "^7.3.0",
-    "koa-bodyparser": "^4.2.0",
     "bluebird": "^3.5.1",
-    "buffer-equal-constant-time": "^1.0.1"
+    "buffer-equal-constant-time": "^1.0.1",
+    "koa": "^2.4.1",
+    "koa-bodyparser": "^4.2.0",
+    "koa-router": "^7.3.0",
+    "minimist": "^1.2.0"
   },
   "devDependencies": {
-    "nodemon": "^1.14.8"
+    "nodemon": "^1.18.9"
   }
 }
